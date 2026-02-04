@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMRIT COUTURE | High-End Fashion</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #080808;
+            --accent-gold: #C5A059;
+            --deep-purple: #2E1A47;
+            --emerald-glass: rgba(0, 71, 49, 0.2);
+            --silk-white: #FDFBF7;
+            --gold-gradient: linear-gradient(135deg, #C5A059 0%, #F1D39A 50%, #B38728 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--silk-white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Editorial Typography */
+        h1, h2, h3 { font-family: 'Tenor Sans', sans-serif; text-transform: uppercase; letter-spacing: 4px; }
+        .italic { font-family: 'Cormorant Garamond', serif; font-style: italic; text-transform: lowercase; letter-spacing: 0; }
+
+        /* --- Minimalist Luxury Navigation --- */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            padding: 40px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        nav.scrolled {
+            padding: 20px 8%;
+            background: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .logo { font-size: 1.8rem; letter-spacing: 8px; font-weight: 400; border-bottom: 1px solid var(--accent-gold); }
+
+        .nav-links a {
+            text-decoration: none; color: var(--silk-white);
+            font-size: 0.75rem; letter-spacing: 3px; font-weight: 400;
+            margin-left: 50px; transition: 0.4s; position: relative;
+        }
+
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0%; height: 1px; background: var(--accent-gold); transition: 0.4s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- Editorial Hero --- */
+        .hero {
+            height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #080808 100%);
+            position: relative; overflow: hidden;
+        }
+
+        .hero-title { text-align: center; z-index: 2; }
+        .hero-title h1 { font-size: clamp(3rem, 12vw, 8rem); line-height: 0.9; margin-bottom: 10px; opacity: 0.9; }
+        .hero-title p { font-size: 1rem; letter-spacing: 10px; color: var(--accent-gold); }
+
+        /* Abstract Decorative Elements */
+        .glow-circle {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.1) 0%, transparent 70%);
+            border-radius: 50%; top: -10%; right: -10%; filter: blur(80px);
+        }
+
+        /* --- Editorial Grid --- */
+        .section { padding: 120px 8%; }
+        
+        .editorial-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 100px; border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+        }
+
+        .editorial-header h2 { font-size: 2.5rem; }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .collection-item {
+            grid-column: span 6;
+            background: #111;
+            padding: 80px 40px;
+            position: relative;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid transparent;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+        }
+
+        .collection-item:nth-child(even) { margin-top: 80px; }
+
+        .collection-item:hover {
+            border-color: var(--accent-gold);
+            background: #151515;
+            transform: translateY(-10px);
+        }
+
+        .collection-item i {
+            font-size: 3rem; margin-bottom: 30px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .item-label { font-size: 0.7rem; letter-spacing: 4px; color: var(--accent-gold); margin-bottom: 15px; }
+        .item-name { font-size: 1.8rem; margin-bottom: 20px; }
+        .item-desc { font-size: 0.85rem; color: #888; max-width: 300px; font-weight: 300; }
+
+        /* --- Premium CTA --- */
+        .cta-gold {
+            display: inline-block; padding: 20px 60px;
+            background: transparent; border: 1px solid var(--accent-gold);
+            color: var(--accent-gold); text-decoration: none;
+            text-transform: uppercase; letter-spacing: 5px; font-size: 0.8rem;
+            transition: 0.4s; margin-top: 40px;
+        }
+
+        .cta-gold:hover { background: var(--gold-gradient); color: #000; border-color: transparent; }
+
+        /* --- Bespoke Service (Glassmorphism) --- */
+        .bespoke-section {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://www.transparenttextures.com/patterns/black-paper.png');
+            text-align: center; padding: 150px 8%;
+        }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 80px 40px;
+            max-width: 900px; margin: 0 auto;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 100px 8% 50px;
+            background: #050505;
+            text-align: center;
+        }
+
+        .footer-logo { font-size: 2.5rem; letter-spacing: 15px; margin-bottom: 40px; display: block; }
+        .social-wrap { display: flex; justify-content: center; gap: 40px; margin-bottom: 60px; }
+        .social-wrap a { color: var(--accent-gold); font-size: 1.2rem; transition: 0.3s; }
+        .social-wrap a:hover { transform: scale(1.2); }
+
+        .copyright { font-size: 0.6rem; letter-spacing: 4px; opacity: 0.4; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .collection-item { grid-column: span 12; margin-top: 0 !important; padding: 60px 20px; }
+            .editorial-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">AMRIT</div>
+        <div class="nav-links">
+            <a href="#about">The Heritage</a>
+            <a href="#collection">Atelier</a>
+            <a href="#service">Bespoke</a>
+        </div>
+        <div class="nav-extra">
+            <i class="fa-solid fa-bag-shopping" style="color: var(--accent-gold); cursor: pointer;"></i>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="glow-circle"></div>
+        <div class="hero-title" data-aos="zoom-out">
+            <p>Collection <span class="italic">twenty twenty-six</span></p>
+            <h1>COUTURE</h1>
+            <a href="#collection" class="cta-gold">Discover Atelier</a>
+        </div>
+    </section>
+
+    <section class="section" id="collection">
+        <div class="editorial-header">
+            <h2 data-aos="fade-right">The <span class="italic">New</span> Standards</h2>
+            <p style="font-size: 0.7rem; letter-spacing: 3px; opacity: 0.6;">CURATED SELECTION</p>
+        </div>
+
+        <div class="collection-grid">
+            <div class="collection-item" data-aos="fade-up">
+                <div class="item-label">Formalwear</div>
+                <i class="fa-solid fa-chess-knight"></i>
+                <h3 class="item-name">The Velvet <span class="italic">Heirloom</span></h3>
+                <p class="item-desc">Double-breasted silk velvet jacket with hand-stitched gold zari borders.</p>
+                <a href="#" class="cta-gold" style="padding: 12px 30px; font-size: 0.6rem;">Enquire</a>
+            </div>
+
+            <div class="collection-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="item-label">Festive</div>
+                <i class="fa-solid fa-feather-pointed"></i>
+                <h3 class="item-name">Silk <span class="italic">Ethereal</span></h3>
+                <p class="item-desc">A masterpiece of weightless silk chiffon, draped for modern royalty.</p>
+                <a href="#" class="cta-gold" style="padding: 12px 30px; font-size: 0.6rem;">Enquire</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bespoke-section" id="service">
+        <div class="glass-box" data-aos="fade-in">
+            <h2 style="margin-bottom: 20px;">Bespoke <span class="italic">Concierge</span></h2>
+            <p style="font-weight: 200; letter-spacing: 2px; margin-bottom: 40px;">PRIVATE FITTINGS • CUSTOM TEXTILES • GLOBAL CONSIGNMENT</p>
+            <p style="font-size: 0.9rem; color: #bbb; max-width: 600px; margin: 0 auto 40px;">Experience the pinnacle of fashion through our private atelier services, where every garment is crafted to your unique story.</p>
+            <a href="https://wa.me/919876543210" class="cta-gold" style="background: white; color: black; border: none;">Consult a Stylist</a>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-logo">AMRIT</span>
+        <div class="social-wrap">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-vimeo-v"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+        <div style="margin-bottom: 40px; font-size: 0.8rem; letter-spacing: 2px;">
+            PARIS • JAIPUR • MILAN
+        </div>
+        <p class="copyright">© 2026 AMRIT COUTURE ATELIER. DESIGNED BY FLOX.WEB</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1500, once: true });
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
